@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: freeradius
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: freeradius
+  template:
+    metadata:
+      name: freeradius
+      labels:
+        name: freeradius
+    spec:
+            #      volumes:
+            #        - name: nfs-freeradius
+            #          persistentVolumeClaim:
+            #            claimName: freeradius
+      volumes:
+      - name: raddb
+        configMap:
+          name: freeradius
+      containers:
+        - name: freeradius
+          image: 'freeradius/freeradius-server:3.0.21-alpine'
+          ports:
+            - containerPort: 1812
+              protocol: UDP
+            - containerPort: 1813
+              protocol: UDP
+          volumeMounts:
+            - name: raddb
+              mountPath: /etc/raddb/mods-config/files/authorize
+              subPath: authorize
+            - name: raddb
+              mountPath: /etc/raddb/clients.conf
+              subPath: clients.conf
