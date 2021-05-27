@@ -1,5 +1,10 @@
-stanislas    Cleartext-Password := "Stan"
+rad_adm    Cleartext-Password := "Admin123"
 	F5-LTM-User-Role = 100,
+	F5-LTM-User-Info-1 = mgmt,
+	F5-LTM-User-Partition = Common,
+	F5-LTM-User-Shell = tmsh
+rad_guest    Cleartext-Password := "Guest123"
+	F5-LTM-User-Role = 700,
 	F5-LTM-User-Info-1 = mgmt,
 	F5-LTM-User-Partition = Common,
 	F5-LTM-User-Shell = tmsh
