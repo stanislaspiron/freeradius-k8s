@@ -10,6 +10,6 @@ kubectl create configmap freeradius --from-file authorize --from-file clients.co
 Update authorize file
 ```
 kubectl delete configmaps freeradius 
-kubectl create configmap freeradius --from-file authorize --from-file clients.conf 
+kubectl create configmap freeradius --from-file authorize --from-file clients.conf --from-file radiusd.conf
 kubectl rollout restart deployment freeradius 
 ```
