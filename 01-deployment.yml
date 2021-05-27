@@ -21,6 +21,7 @@ spec:
       - name: raddb
         configMap:
           name: freeradius
+          optional: true
       containers:
         - name: freeradius
           image: 'freeradius/freeradius-server:3.0.21-alpine'
@@ -36,3 +37,6 @@ spec:
             - name: raddb
               mountPath: /etc/raddb/clients.conf
               subPath: clients.conf
+            - name: raddb
+              mountPath: /etc/raddb/radiusd.conf
+              subPath: radiusd.conf
