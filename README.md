@@ -1,7 +1,8 @@
 # freeradius-k8s
 
-## Limitations
-This repository was built for a LAB... The goal is not to be used in production because shared secrets and user password are in clear text.
+## Description
+This replository contains Yaml Files to deploy freeradius in Kubernetes cluster.
+It was built for a LAB... The goal is not to be used in production because shared secrets and user password are in clear text.
 
 ## Config Files
 This freeradius deployment uses following files:
