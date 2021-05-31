@@ -1,4 +1,4 @@
-# freeradius-k8s
+# Deploy FreeRadius server in kubernetes
 
 ## Description
 This replository contains Yaml Files to deploy freeradius in Kubernetes cluster.
