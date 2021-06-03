@@ -6,9 +6,9 @@ This repository is not certified to work in a production environment.
 
 ## Config Files
 This freeradius deployment uses following files:
-- clients.conf : contains the RADIUS clients with shared secrets
-- radiusd.conf : contains the radius configuration. this file was edited to stdout to see authentication logs with *kubectl logs* command
-- authorize : contains usernames, passwords and attributes for each users
+- radiusd.conf : contains the radius configuration. this file was edited to stdout to see authentication logs with *kubectl logs* command. This file is stored in a configmap object.
+- clients.conf : contains the RADIUS clients with shared secrets. This file is stored in a secret object as it contains sensitive data.
+- authorize : contains usernames, passwords and attributes for each users. This file is stored in a secret object as it contains sensitive data.
 
 All other configuration files are inherited from docker image, including EAP certificates and trusted CA.
 
