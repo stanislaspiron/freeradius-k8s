@@ -18,25 +18,28 @@ spec:
             #          persistentVolumeClaim:
             #            claimName: freeradius
       volumes:
-      - name: raddb
+      - name: raddb-files
         configMap:
-          name: freeradius
+          name: freeradius-files
           optional: true
+      - name: raddb-secrets
+        secret:
+         secretName: freeradius-secrets
       containers:
         - name: freeradius
-          image: 'freeradius/freeradius-server:3.0.21-alpine'
+          image: 'freeradius/freeradius-server:latest-alpine'
           ports:
             - containerPort: 1812
               protocol: UDP
             - containerPort: 1813
               protocol: UDP
           volumeMounts:
-            - name: raddb
+            - name: raddb-secrets
               mountPath: /etc/raddb/mods-config/files/authorize
               subPath: authorize
-            - name: raddb
+            - name: raddb-secrets
               mountPath: /etc/raddb/clients.conf
               subPath: clients.conf
-            - name: raddb
+            - name: raddb-files
               mountPath: /etc/raddb/radiusd.conf
               subPath: radiusd.conf
