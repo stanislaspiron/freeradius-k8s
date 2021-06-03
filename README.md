@@ -10,6 +10,8 @@ This freeradius deployment uses following files:
 - radiusd.conf : contains the radius configuration. this file was edited to stdout to see authentication logs with *kubectl logs* command
 - authorize : contains usernames, passwords and attributes for each users
 
+All other configuration files are inherited from docker image, including EAP certificates and trusted CA.
+
 ## Requirements
 This deployment requires following configuration:
 - kubernetes cluster. This was tested in [Microk8s](https://github.com/stanislaspiron/microk8s_awx/blob/main/microk8s/microk8s_install.md)
