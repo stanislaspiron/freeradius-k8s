@@ -2,7 +2,7 @@
 
 ## Description
 This replository contains Yaml Files to deploy freeradius in Kubernetes cluster.
-It was built for a LAB... The goal is not to be used in production because shared secrets and user password are in clear text.
+This repository is not certified to work in a production environment. 
 
 ## Config Files
 This freeradius deployment uses following files:
