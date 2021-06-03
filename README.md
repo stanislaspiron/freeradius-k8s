@@ -15,7 +15,7 @@ All other configuration files are inherited from docker image, including EAP cer
 ## Requirements
 This deployment requires following configuration:
 - kubernetes cluster. This was tested in [Microk8s](https://github.com/stanislaspiron/microk8s_awx/blob/main/microk8s/microk8s_install.md)
-- [metallb](https://github.com/stanislaspiron/microk8s_awx/blob/main/microk8s/install_metallb.md)
+- [metallb](https://github.com/stanislaspiron/microk8s_awx/blob/main/microk8s/install_metallb.md) load balancer
 
 ## Install 
 Update the service file with expected Metallb IP address.
