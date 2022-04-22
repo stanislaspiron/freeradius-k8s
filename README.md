@@ -23,8 +23,8 @@ Update the service file with expected Metallb IP address.
 
 Deploy RADIUS deployment and service
 ```
-kubectl create configmap freeradius-files --from-file radiusd.conf
-kubectl create secret generic freeradius-secrets --from-file authorize --from-file clients.conf 
+kubectl create configmap -n radius freeradius-files --from-file radiusd.conf
+kubectl create secret generic -n radius freeradius-secrets --from-file authorize --from-file clients.conf 
 kubectl apply -f 01-deployment.yml 
 kubectl apply -f 02-service.yml 
 ```
