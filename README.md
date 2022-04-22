@@ -32,15 +32,15 @@ kubectl apply -f freeradius.yml
 ## Update configuration files
 Update configmap with new files and reload deployment
 ```
-kubectl delete configmaps freeradius-files 
-kubectl create configmap freeradius-files --from-file radiusd.conf
-kubectl rollout restart deployment freeradius 
+kubectl delete configmaps -n radius freeradius-files 
+kubectl create configmap -n radius freeradius-files --from-file radiusd.conf
+kubectl rollout restart deployment -n radius freeradius 
 ```
 
 ## Update configuration files with sensitive data (secret)
 Update secret with new files and reload deployment
 ```
-kubectl delete secret freeradius-secrets 
-kubectl create secret generic freeradius-secrets --from-file authorize --from-file clients.conf 
-kubectl rollout restart deployment freeradius 
+kubectl delete secret -n radius freeradius-secrets 
+kubectl create secret generic -n radius freeradius-secrets --from-file authorize --from-file clients.conf 
+kubectl rollout restart deployment -n radius freeradius 
 ```
