@@ -44,3 +44,15 @@ kubectl delete secret -n radius freeradius-secrets
 kubectl create secret generic -n radius freeradius-secrets --from-file authorize --from-file clients.conf 
 kubectl rollout restart deployment -n radius freeradius 
 ```
+
+# Use kubernetes service name from other deployments in same cluster
+
+To allow other deployments within the same kubernetes cluster, use following name:
+
+```
+lb-freeradius.radius.svc.cluster.local
+```
+
+- lb-freeradius : service name
+- radius : namespace name
+- svc.cluster.local : internal kubernetes dns suffix
