@@ -1,0 +1,65 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: freeradius
+  namespace: radius
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: freeradius
+  template:
+    metadata:
+      name: freeradius
+      labels:
+        name: freeradius
+    spec:
+      volumes:
+      - name: raddb-files
+        configMap:
+          name: freeradius-files
+          optional: true
+      - name: raddb-secrets
+        secret:
+         secretName: freeradius-secrets
+      containers:
+        - name: freeradius
+          image: 'freeradius/freeradius-server:latest-alpine'
+          ports:
+            - containerPort: 1812
+              protocol: UDP
+            - containerPort: 1813
+              protocol: UDP
+          volumeMounts:
+            - name: raddb-secrets
+              mountPath: /etc/raddb/mods-config/files/authorize
+              subPath: authorize
+            - name: raddb-secrets
+              mountPath: /etc/raddb/clients.conf
+              subPath: clients.conf
+            - name: raddb-files
+              mountPath: /etc/raddb/radiusd.conf
+              subPath: radiusd.conf
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lb-freeradius
+  namespace: radius
+  annotations:
+    metallb.universe.tf/allow-shared-ip: 'true'
+spec:
+  ports:
+    - name: 'radius'
+      protocol: UDP
+      port: 1812
+      targetPort: 1812
+    - name: 'radius-acct'
+      protocol: UDP
+      port: 1813
+      targetPort: 1813
+  selector:
+    name: freeradius
+  type: LoadBalancer
+  loadBalancerIP: 192.168.245.3
